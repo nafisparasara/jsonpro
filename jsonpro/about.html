@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="light scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About JSONPro | Free Online JSON Developer Tools</title>
+  <meta name="description" content="Learn about JSONPro, its free browser-based JSON formatter, validator, comparison and conversion tools, and how JSON processing works." />
+  <meta name="author" content="JSONPro" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://jsonpro.com/about.html" />
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'] },
+        colors: { brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' } }
+      }}
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+  <!-- Top Navigation Header: same as index.html -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+	 <a href="index.html" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-sm shadow-indigo-600/20 group-hover:bg-indigo-700 transition">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1" />
+            <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" />
+            <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+        <div>
+          <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">JSON<span class="text-indigo-600 dark:text-indigo-400"> Pro</span></span>
+          <p class="hidden sm:block text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-none">Free online JSON tools for developers</p>
+        </div>
+      </a>
+      <div class="flex items-center gap-2 sm:gap-4">
+        <nav aria-label="Primary Page Links" class="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a href="index.html#features" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Features</a>
+          <a href="index.html#how-to-use" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Guide</a>
+          <a href="index.html#faq" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">FAQ</a>
+          <a href="about.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
+          <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+        </nav>
+        <button id="theme-toggle" type="button" aria-label="Toggle Light or Dark Theme" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <svg id="icon-sun" class="w-4 h-4 hidden dark:block text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>
+          <svg id="icon-moon" class="w-4 h-4 block dark:hidden text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="flex-1">
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-10 shadow-sm">
+        <p class="inline-flex rounded-full bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 text-xs font-semibold text-indigo-700 dark:text-indigo-300">JSONPro · Developer tools</p>
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">About JSONPro</h1>
+        <p class="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">Learn what JSONPro does, how its browser-based developer tools work, and how to contact the people maintaining this website.</p>
+
+        <h2 class="mt-9 text-xl font-bold text-slate-900 dark:text-white">Our purpose</h2>
+        <p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">JSONPro is a free online workspace for developers who need to inspect, format, validate, compare and transform JSON data. The goal is to make common data-formatting tasks straightforward without requiring an account or installing desktop software.</p>
+
+        <h2 class="mt-8 text-xl font-bold text-slate-900 dark:text-white">Tools available</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-6 leading-7 text-slate-600 dark:text-slate-300">
+          <li><strong>JSON formatter and minifier:</strong> make valid JSON easier to read or compact it for transfer.</li>
+          <li><strong>Validator:</strong> identify JSON syntax errors using the browser's JSON parser.</li>
+          <li><strong>Tree and table views:</strong> explore nested objects and arrays.</li>
+          <li><strong>JSON comparison:</strong> review added, removed and changed values in two payloads.</li>
+          <li><strong>Converters:</strong> create TypeScript, CSV, YAML and SQL-style output from supported JSON structures.</li>
+          <li><strong>JSONPath helper:</strong> evaluate the expression forms documented in the tool.</li>
+          <li><strong>JWT decoder:</strong> inspect the Base64URL-encoded header and payload. It does not validate token signatures.</li>
+        </ul>
+
+        <h2 class="mt-8 text-xl font-bold text-slate-900 dark:text-white">How processing works</h2>
+        <p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">The interactive tools run in your browser tab. JSON input is parsed and transformed by JavaScript in the page; the site does not provide a JSON-processing upload endpoint. The website does load interface assets from third-party providers, as described in the Privacy Policy.</p>
+
+        <h2 class="mt-8 text-xl font-bold text-slate-900 dark:text-white">Accuracy and limitations</h2>
+        <p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">Conversions are convenience outputs and may need review before production use. Auto-repair is best-effort and can change meaning if malformed input is ambiguous. Always validate generated output in the target language, database or application.</p>
+
+        <h2 class="mt-8 text-xl font-bold text-slate-900 dark:text-white">Contact</h2>
+        <p class="mt-2 leading-7 text-slate-600 dark:text-slate-300">Questions, corrections and feedback are welcome at <a class="font-semibold text-indigo-600 underline underline-offset-2 hover:text-indigo-700 dark:text-indigo-400" href="mailto:support@jsonpro.com">support@jsonpro.com</a>.</p>
+      </article>
+    </section>
+  </main>
+  <!-- Footer: same as index.html -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-800 dark:text-slate-200">JSONPro</span>
+        <span>•</span>
+        <span>Client-Side JSON Formatter, Validator, Diff &amp; Converter</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 underline underline-offset-2">Contact</a>
+        <a href="security.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 underline underline-offset-2">Security</a>
+        <span>RFC 8259 Compliant</span>
+        <span>© <span id="copyright-year">2026</span> JSONPro</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      let savedTheme = 'light';
+      try { savedTheme = localStorage.getItem('jsonpro_theme') || 'light'; } catch (_) {}
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      document.documentElement.classList.toggle('light', savedTheme !== 'dark');
+
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        const isDark = document.documentElement.classList.toggle('dark');
+        document.documentElement.classList.toggle('light', !isDark);
+        try { localStorage.setItem('jsonpro_theme', isDark ? 'dark' : 'light'); } catch (_) {}
+      });
+
+      const year = document.getElementById('copyright-year');
+      if (year) year.textContent = String(new Date().getFullYear());
+    })();
+  </script>
+</body>
+</html>

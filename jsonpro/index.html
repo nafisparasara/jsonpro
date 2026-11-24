@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en" class="light scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Online JSON Formatter &amp; Validator | JSONPro</title>
+  <meta name="description" content="Format, validate, minify, repair and compare JSON online. Explore JSON as a tree or table, run basic JSONPath queries, decode JWT claims, and convert JSON to TypeScript, CSV, YAML and SQL — free in your browser." />
+  <meta name="author" content="JSONPro" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="https://jsonpro.com/" />
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="shortcut icon" href="favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="JSONPro" />
+  <meta property="og:title" content="JSONPro — Free Online JSON Formatter & Developer Tools" />
+  <meta property="og:description" content="Format, validate, compare and convert JSON locally in your browser with JSONPro's free developer tools." />
+  <meta property="og:url" content="https://jsonpro.com/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JSONPro — Free Online JSON Tools" />
+  <meta name="twitter:description" content="A practical browser-based JSON formatter, validator, diff and converter." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "JSONPro",
+        "url": "https://jsonpro.com/"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "JSONPro",
+        "url": "https://jsonpro.com/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any modern web browser",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Browser-based JSON formatting, validation, comparison and conversion tools."
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+        },
+        colors: { brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' } }
+      }}
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-900 dark:selection:bg-indigo-900 dark:selection:text-indigo-100 min-h-screen flex flex-col">
+
+  <!-- Toast Notification Container (Replaces alert() cleanly) -->
+  <div id="toast-container" aria-live="polite" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Brand Identity -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-sm shadow-indigo-600/20 group-hover:bg-indigo-700 transition">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1" />
+            <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" />
+            <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+          </svg>
+        </div>
+        <div>
+          <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">JSON<span class="text-indigo-600 dark:text-indigo-400"> Pro</span></span>
+          <p class="hidden sm:block text-[11px] font-medium text-slate-500 dark:text-slate-400 leading-none">Free online JSON tools for developers</p>
+        </div>
+      </a>
+
+      <!-- Security & Privacy Badge + Navigation + Theme Toggle -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <nav aria-label="Primary Page Links" class="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-600 dark:text-slate-300">
+          <a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Features</a>
+          <a href="#how-to-use" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Guide</a>
+          <a href="#faq" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">FAQ</a>
+          <a href="about.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
+          <a href="contact.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+        </nav>
+
+        <!-- Light / Dark Mode Toggle -->
+        <button id="theme-toggle" type="button" aria-label="Toggle Light or Dark Theme" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg id="icon-sun" class="w-4 h-4 hidden dark:block text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg id="icon-moon" class="w-4 h-4 block dark:hidden text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Workspace -->
+  <main class="flex-1">
+    <section aria-label="JSONPro Interactive Studio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-10">
+
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs text-slate-500">
+        <ol class="flex items-center gap-2"><li><a href="/" class="hover:text-indigo-600">Home</a></li><li aria-hidden="true">/</li><li aria-current="page" class="text-slate-700">JSON tools</li></ol>
+      </nav>
+      <div class="mx-auto mb-8 max-w-4xl px-2 text-center">
+        <p class="mx-auto inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold tracking-wide text-emerald-800 shadow-sm">
+          <span class="mr-2 inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
+          100% Free <span class="mx-2 text-emerald-500/70">•</span> Client-side <span class="mx-2 text-emerald-500/70">•</span> JSON Developer Tool
+        </p>
+        <h1 class="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          Free Online JSON Formatter, Validator &amp; Converter
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+          Everything you need to work with JSON, all in one place. Format and validate data, compare JSON files, explore nested structures, run JSONPath queries, decode JWT claims, and convert JSON into developer-friendly formats.
+        </p>
+        <p class="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500">
+          Fast, simple, and processed locally in your browser—your JSON is not uploaded to JSONPro.
+        </p>
+      </div>
+
+      <!-- Workspace Header & Tool Tabs -->
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-4">
+        <div role="tablist" aria-label="JSON Studio Tools" class="flex flex-wrap items-center gap-1.5 bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <button type="button" role="tab" aria-selected="true" data-tab="formatter" class="studio-tab active-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition bg-indigo-600 text-white shadow-sm">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span>Formatter &amp; Tree</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="diff" class="studio-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M5 8h4"/><path d="M7 6v4"/><path d="M15 16h4"/></svg>
+            <span>JSON Diff</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="converter" class="studio-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3v18"/><path d="m21 17-4 4-4-4"/><path d="M7 21V3"/><path d="m3 7 4-4 4 4"/></svg>
+            <span>Converter</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="jsonpath" class="studio-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>JSONPath Query</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" data-tab="jwt" class="studio-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>JWT Decoder</span>
+          </button>
+        </div>
+
+        <!-- Mobile Security Pill -->
+        <div class="flex md:hidden items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+          <span>Processed locally in your browser</span>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           TAB 1: FORMATTER, VALIDATOR, TREE & TABLE VIEWER
+      ====================================================================== -->
+      <div id="panel-formatter" class="tab-panel space-y-3">
+        <!-- Action Toolbar -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-2.5 shadow-sm flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button type="button" onclick="formatJSON()" class="px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-sm transition flex items-center gap-1.5">
+              <span>Beautify / Format</span>
+            </button>
+
+            <label for="indent-select" class="sr-only">Indentation Size</label>
+            <select id="indent-select" onchange="formatJSON()" class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="2" selected>2 Spaces</option>
+              <option value="4">4 Spaces</option>
+              <option value="tab">Tab</option>
+            </select>
+
+            <button type="button" onclick="minifyJSON()" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 transition">
+              Minify
+            </button>
+
+            <button type="button" onclick="repairJSON()" class="px-3 py-2 rounded-xl border border-amber-200 dark:border-amber-800/70 bg-amber-50 dark:bg-amber-950/50 hover:bg-amber-100 dark:hover:bg-amber-900/50 text-xs font-semibold text-amber-800 dark:text-amber-300 transition flex items-center gap-1.5" title="Fix trailing commas, single quotes, unquoted keys &amp; JS comments">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <span>Auto-Repair JSON</span>
+            </button>
+
+            <button type="button" onclick="sortKeysJSON()" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 transition">
+              Sort Keys (A–Z)
+            </button>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button type="button" onclick="copyOutput()" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copy</span>
+            </button>
+            <button type="button" onclick="downloadJSON()" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              <span>Download .json</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-Time Validation & Payload Telemetry Bar -->
+        <div id="validation-banner" class="rounded-2xl px-4 py-2.5 border text-xs flex flex-wrap items-center justify-between gap-2 bg-emerald-50/90 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/70 text-emerald-800 dark:text-emerald-200 transition-colors">
+          <div class="flex items-center gap-2 font-semibold">
+            <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span id="status-message">Valid JSON — Ready</span>
+          </div>
+          <div id="payload-stats" class="flex flex-wrap items-center gap-3 font-mono text-[11px] opacity-90">
+            <span id="stat-size">Size: 0 B</span>
+            <span>•</span>
+            <span id="stat-keys">Keys: 0</span>
+            <span>•</span>
+            <span id="stat-depth">Depth: 0</span>
+          </div>
+        </div>
+
+        <!-- Split Pane Editor -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <!-- Left Pane: Raw JSON Input -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm flex flex-col overflow-hidden h-[540px]">
+            <div class="px-3.5 py-2.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900 flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Raw JSON Input</span>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="pasteFromClipboard()" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition">Paste</button>
+                <label class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition cursor-pointer">
+                  <span>Upload</span>
+                  <input type="file" id="json-file-input" accept=".json,.txt,application/json" class="hidden" onchange="handleFileUpload(event)" />
+                </label>
+                <button type="button" onclick="loadSampleJSON()" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition">Sample</button>
+                <button type="button" onclick="clearInput()" class="px-2.5 py-1 rounded-lg text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition">Clear</button>
+              </div>
+            </div>
+
+            <!-- Line-Numbered Editor Body -->
+            <div class="relative flex-1 flex overflow-hidden font-mono text-[13px] leading-6">
+              <div id="line-numbers" aria-hidden="true" class="w-12 py-3 pr-2.5 text-right select-none bg-slate-50 dark:bg-slate-950/60 text-slate-400 dark:text-slate-600 border-r border-slate-200 dark:border-slate-800 overflow-hidden">1</div>
+              <textarea id="json-input" spellcheck="false" aria-label="Raw JSON Input Editor" placeholder='Paste or type your JSON here, e.g. {"project": "JSONPro", "secure": true}' class="flex-1 w-full h-full p-3 bg-transparent text-slate-800 dark:text-slate-100 resize-none focus:outline-none overflow-auto whitespace-pre"></textarea>
+            </div>
+          </div>
+
+          <!-- Right Pane: Formatted Code / Interactive Tree / Table View -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm flex flex-col overflow-hidden h-[540px]">
+            <div class="px-3.5 py-2.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-1 bg-slate-200/70 dark:bg-slate-800 p-0.5 rounded-xl">
+                <button type="button" id="view-btn-code" onclick="switchOutputView('code')" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm transition">Code</button>
+                <button type="button" id="view-btn-tree" onclick="switchOutputView('tree')" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 transition">Tree View</button>
+                <button type="button" id="view-btn-table" onclick="switchOutputView('table')" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 transition">Table View</button>
+              </div>
+              <div id="tree-controls" class="hidden flex items-center gap-1.5">
+                <button type="button" onclick="toggleAllTreeNodes(true)" class="px-2 py-1 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Expand All</button>
+                <button type="button" onclick="toggleAllTreeNodes(false)" class="px-2 py-1 rounded-lg text-[11px] font-medium border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Collapse All</button>
+              </div>
+            </div>
+
+            <!-- Code Output -->
+            <div id="output-code-view" class="flex-1 overflow-auto p-3 font-mono text-[13px] leading-6">
+              <pre id="json-output-pre" class="whitespace-pre text-slate-800 dark:text-slate-100"></pre>
+            </div>
+
+            <!-- Interactive Tree Output -->
+            <div id="output-tree-view" class="hidden flex-1 overflow-auto p-4 font-mono text-[13px] leading-6"></div>
+
+            <!-- Table Output -->
+            <div id="output-table-view" class="hidden flex-1 overflow-auto p-3 text-xs"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           TAB 2: JSON DIFF & STRUCTURAL COMPARE
+      ====================================================================== -->
+      <div id="panel-diff" class="tab-panel hidden space-y-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-sm flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="runJSONDiff()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-sm transition">
+              Compare JSON Payloads
+            </button>
+            <button type="button" onclick="loadSampleDiff()" class="px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-semibold transition">
+              Load Diff Example
+            </button>
+          </div>
+          <div id="diff-summary-badges" class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">+0 Added</span>
+            <span class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">-0 Removed</span>
+            <span class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">~0 Modified</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-slate-500">Original JSON (Left)</div>
+            <textarea id="diff-left" spellcheck="false" placeholder="Paste original JSON object or array..." class="w-full h-64 p-3 font-mono text-xs bg-transparent resize-none focus:outline-none"></textarea>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-slate-500">Modified JSON (Right)</div>
+            <textarea id="diff-right" spellcheck="false" placeholder="Paste modified JSON object or array..." class="w-full h-64 p-3 font-mono text-xs bg-transparent resize-none focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-4 py-2.5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-slate-500">Structural Diff Report</div>
+          <div id="diff-results" class="p-4 font-mono text-xs space-y-2 max-h-80 overflow-auto">
+            <p class="text-slate-500 dark:text-slate-400 font-sans">Enter two JSON payloads above and click <strong>Compare JSON Payloads</strong> to inspect added, removed, and updated keys.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           TAB 3: MULTI-FORMAT CONVERTER (TypeScript, CSV, YAML, SQL)
+      ====================================================================== -->
+      <div id="panel-converter" class="tab-panel hidden space-y-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-sm flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Target Format:</span>
+            <button type="button" data-format="typescript" onclick="convertJSONFormat('typescript')" class="conv-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition">TypeScript Interfaces</button>
+            <button type="button" data-format="csv" onclick="convertJSONFormat('csv')" class="conv-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition">CSV Spreadsheet</button>
+            <button type="button" data-format="yaml" onclick="convertJSONFormat('yaml')" class="conv-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition">YAML</button>
+            <button type="button" data-format="sql" onclick="convertJSONFormat('sql')" class="conv-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition">SQL Table + Insert</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="syncMainToConverter()" class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition">Pull from Formatter</button>
+            <button type="button" onclick="copyConvertedOutput()" class="px-3 py-1.5 rounded-xl bg-slate-900 dark:bg-slate-700 text-white text-xs font-semibold hover:opacity-90 transition">Copy Output</button>
+            <button type="button" onclick="downloadConvertedOutput()" class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition">Download</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-[460px]">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-slate-500">Source JSON</div>
+            <textarea id="converter-input" spellcheck="false" oninput="convertJSONFormat(currentConvertTarget)" class="flex-1 w-full p-3 font-mono text-xs bg-transparent resize-none focus:outline-none"></textarea>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-[460px]">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-between">
+              <span id="converter-output-label" class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">TypeScript Output</span>
+            </div>
+            <pre id="converter-output" class="flex-1 p-3 font-mono text-xs overflow-auto whitespace-pre text-slate-800 dark:text-slate-100"></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           TAB 4: JSONPATH & FILTER QUERY ENGINE
+      ====================================================================== -->
+      <div id="panel-jsonpath" class="tab-panel hidden space-y-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-sm space-y-2.5">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <div class="flex-1 flex items-center rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500">
+              <span class="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 mr-2">PATH:</span>
+              <input id="jsonpath-query" type="text" value="$.users[*].email" oninput="runJSONPathQuery()" placeholder="e.g. $.users[*].email or $.company.departments[0]" class="w-full bg-transparent font-mono text-xs focus:outline-none" />
+            </div>
+            <button type="button" onclick="runJSONPathQuery()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition">Evaluate Query</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Quick Expressions:</span>
+            <button type="button" onclick="setJSONPath('$.users[*].email')" class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono hover:text-indigo-600">$.users[*].email</button>
+            <button type="button" onclick="setJSONPath('$.users[0]')" class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono hover:text-indigo-600">$.users[0]</button>
+            <button type="button" onclick="setJSONPath('$.metrics.uptimePercent')" class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono hover:text-indigo-600">$.metrics.uptimePercent</button>
+            <button type="button" onclick="setJSONPath('$..role')" class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono hover:text-indigo-600">$..role (Recursive)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-[430px]">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-slate-500">JSON Dataset (Synced with Formatter)</div>
+            <textarea id="jsonpath-source" spellcheck="false" oninput="runJSONPathQuery()" class="flex-1 w-full p-3 font-mono text-xs bg-transparent resize-none focus:outline-none"></textarea>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-[430px]">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Matched Results</span>
+              <span id="jsonpath-match-count" class="text-xs font-mono font-semibold text-indigo-600 dark:text-indigo-400">0 matches</span>
+            </div>
+            <pre id="jsonpath-output" class="flex-1 p-3 font-mono text-xs overflow-auto whitespace-pre text-slate-800 dark:text-slate-100"></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           TAB 5: CLIENT-SIDE JWT TOKEN DECODER
+      ====================================================================== -->
+      <div id="panel-jwt" class="tab-panel hidden space-y-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-sm font-bold text-slate-900 dark:text-white">JWT Decoder (Header &amp; Payload Only)</h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Decode the Base64URL header and payload locally. Decoding does not verify a signature or prove that a token is authentic.</p>
+            </div>
+            <button type="button" onclick="loadSampleJWT()" class="px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition">Load Sample JWT</button>
+          </div>
+          <textarea id="jwt-input" rows="3" spellcheck="false" oninput="decodeJWT()" placeholder="Paste your eyJhbGciOi... JWT string here" class="w-full p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+          <div id="jwt-status" class="text-xs font-semibold text-slate-500"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Decoded Header (Algorithm &amp; Token Type)</div>
+            <pre id="jwt-header-out" class="p-4 font-mono text-xs min-h-[200px] overflow-auto whitespace-pre">{}</pre>
+          </div>
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+            <div class="px-3.5 py-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Decoded Payload (Claims &amp; Expiration)</div>
+            <pre id="jwt-payload-out" class="p-4 font-mono text-xs min-h-[200px] overflow-auto whitespace-pre">{}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SEO & HELPFUL CONTENT SECTIONS FOR GOOGLE SEARCH COMPLIANCE
+    ====================================================================== -->
+    <section id="features" aria-labelledby="features-heading" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-10">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Practical tools for everyday development</span>
+          <h2 id="features-heading" class="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            JSON formatting and data tools in one workspace
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            JSONPro combines six essential API and data engineering utilities into a fast, zero-latency browser workspace built with local browser-based processing for global engineering teams.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Beautify, Minify &amp; Validate JSON</h2>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Format nested API responses with 2-space, 4-space, or tab indentation. Real-time JSON syntax checking pinpoints exact line and column errors alongside payload size and depth metrics.
+            </p>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Intelligent Broken JSON Auto-Repair</h2>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Automatically recover malformed logs and JavaScript object literals by stripping trailing commas, converting single quotes to double quotes, quoting unquoted keys, and removing comments.
+            </p>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Interactive Tree &amp; Table Explorer</h2>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Navigate deeply nested JSON hierarchies with collapsible nodes, data-type badges, one-click JSONPath copying, and automatic tabular rendering for arrays of objects.
+            </p>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Semantic JSON Diff &amp; Compare</h2>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Compare two JSON payloads side-by-side regardless of key ordering. Instantly audit added properties, deleted fields, and modified values during API migrations.
+            </p>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">JSON to TypeScript, CSV, YAML &amp; SQL</h2>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Generate strongly typed TypeScript interfaces, RFC-4180 CSV exports for Excel, Kubernetes-ready YAML configs, and SQL CREATE TABLE + INSERT scripts in one click.
+            </p>
+          </article>
+
+          <article class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900">
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">JSONPath Query &amp; Offline JWT Decoder</h2>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Extract matching subsets from massive payloads using JSONPath expressions (<code>$.users[*].email</code>) and inspect JWT expiration timestamps safely offline.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How-To Guide Section -->
+    <section id="how-to-use" aria-labelledby="guide-heading" class="border-t border-slate-200 dark:border-slate-800 py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="guide-heading" class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">How to Format, Repair, and Convert JSON Online</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="inline-flex w-7 h-7 items-center justify-center rounded-lg bg-indigo-600 text-white text-xs font-bold mb-3">1</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Paste or Upload JSON</h3>
+            <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Paste raw API output into the left editor or upload a local <code>.json</code> file. Validation runs automatically in real time.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="inline-flex w-7 h-7 items-center justify-center rounded-lg bg-indigo-600 text-white text-xs font-bold mb-3">2</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Fix Syntax Errors</h3>
+            <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">If the validation bar highlights an error line, click <strong>Auto-Repair JSON</strong> to clean trailing commas or single quotes instantly.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="inline-flex w-7 h-7 items-center justify-center rounded-lg bg-indigo-600 text-white text-xs font-bold mb-3">3</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Inspect Tree or Table</h3>
+            <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Switch between formatted Code, collapsible Tree View, or Table View to explore complex arrays and copy nested paths.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="inline-flex w-7 h-7 items-center justify-center rounded-lg bg-indigo-600 text-white text-xs font-bold mb-3">4</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Export or Transform</h3>
+            <p class="mt-1.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Copy minified or beautified JSON, download as a file, or switch to the Converter tab for TypeScript, CSV, YAML, or SQL.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developer FAQ Accordion -->
+    <section id="faq" aria-labelledby="faq-heading" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-14">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="faq-heading" class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-3">
+          <details open class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-4">
+            <summary class="flex cursor-pointer items-center justify-between text-sm font-bold text-slate-900 dark:text-white">
+              <span>Is my sensitive JSON data ever uploaded to a server?</span>
+              <span class="text-indigo-600 dark:text-indigo-400 text-lg leading-none">+</span>
+            </summary>
+            <p class="mt-2.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              The formatter, validator, comparison, conversion and decoder features in this page process the text you enter in your browser. This page does not intentionally upload your JSON or JWT input. Your browser still makes requests for site assets such as fonts and the interface framework. Avoid pasting passwords, private keys or production credentials into any online tool unless your security requirements permit it.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-4">
+            <summary class="flex cursor-pointer items-center justify-between text-sm font-bold text-slate-900 dark:text-white">
+              <span>How does JSONPro protect against XSS when viewing untrusted JSON?</span>
+              <span class="text-indigo-600 dark:text-indigo-400 text-lg leading-none">+</span>
+            </summary>
+            <p class="mt-2.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              All user-supplied keys, strings, and values rendered inside the Code, Tree, Table, Diff, and JWT views are strictly HTML-escaped or injected via safe DOM <code>textContent</code> nodes, eliminating Cross-Site Scripting (XSS) vectors.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-4">
+            <summary class="flex cursor-pointer items-center justify-between text-sm font-bold text-slate-900 dark:text-white">
+              <span>Does JSONPro support large JSON files?</span>
+              <span class="text-indigo-600 dark:text-indigo-400 text-lg leading-none">+</span>
+            </summary>
+            <p class="mt-2.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Yes. Because there is no network upload bottleneck, JSONPro parses, formats, minifies, and queries JSON data without sending the input to a JSON-processing server (browser performance depends on device and payload size).
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-800 dark:text-slate-200">JSONPro</span>
+        <span>•</span>
+        <span>Client-Side JSON Formatter, Validator, Diff &amp; Converter</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="contact.html" class="hover:text-indigo-600 underline underline-offset-2">Contact</a>
+        <a href="security.html" class="hover:text-indigo-600 underline underline-offset-2">Security</a>
+        <span>RFC 8259 Compliant</span>
+        <span>© 2026 JSONPro</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    'use strict';
+
+    /* =========================================================================
+       1. STATE & INITIALIZATION
+    ========================================================================= */
+    const SAMPLE_JSON = {
+      project: "JSONPro",
+      version: "1.0.0",
+      clientSideOnly: true,
+      security: {
+        zeroServerUploads: true,
+        xssProtection: "strict-dom-escaping"
+      },
+      metrics: {
+        uptimePercent: 99.99,
+        avgLatencyMs: 0.4
+      },
+      users: [
+        { id: 101, name: "Elena Rostova", email: "elena@cloudscale.eu", role: "Principal Architect", active: true },
+        { id: 102, name: "Marcus Vance", email: "mvance@fintechglobal.io", role: "Staff Security Engineer", active: true },
+        { id: 103, name: "Kenji Takahashi", email: "kenji@tokyodata.jp", role: "Data Platform Lead", active: false }
+      ]
+    };
+
+    let currentParsedData = null;
+    let currentFormattedString = '';
+    let currentOutputView = 'code';
+    let currentConvertTarget = 'typescript';\n    const MAX_INPUT_BYTES = 5 * 1024 * 1024; // 5 MiB per input field
+
+    const inputEl = document.getElementById('json-input');
+    const lineNumbersEl = document.getElementById('line-numbers');
+    const outputPreEl = document.getElementById('json-output-pre');
+    const treeViewEl = document.getElementById('output-tree-view');
+    const tableViewEl = document.getElementById('output-table-view');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearNode = document.getElementById('copyright-year');\n      if (yearNode) yearNode.textContent = String(new Date().getFullYear());\n      initTheme();
+      initTabs();
+      loadSampleJSON(false);
+
+      inputEl.addEventListener('input', () => {
+        updateLineNumbers();
+        processMainJSON(false);
+      });
+
+      inputEl.addEventListener('scroll', () => {
+        lineNumbersEl.scrollTop = inputEl.scrollTop;
+      });
+    });
+
+    /* =========================================================================
+       2. THEME MANAGEMENT (DEFAULT: LIGHT THEME)
+    ========================================================================= */
+    function initTheme() {
+      let saved = 'light';\n      try { saved = localStorage.getItem('jsonpro_theme') || 'light'; } catch (_) {}
+      if (saved === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+      }
+
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        document.documentElement.classList.toggle('light', !isDark);
+        try { localStorage.setItem('jsonpro_theme', isDark ? 'dark' : 'light'); } catch (_) {}
+      });
+    }
+
+    /* =========================================================================
+       3. SECURITY HELPERS & TOAST NOTIFICATIONS
+    ========================================================================= */
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const colors = {
+        success: 'bg-emerald-600 text-white',
+        error: 'bg-rose-600 text-white',
+        info: 'bg-slate-900 dark:bg-slate-800 text-white border border-slate-700'
+      };
+      toast.className = `px-4 py-2.5 rounded-xl text-xs font-semibold shadow-lg transition-all duration-200 ${colors[type] || colors.info}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-1');
+        setTimeout(() => toast.remove(), 220);
+      }, 2600);
+    }
+
+    function copyTextSafe(text, label = 'Copied to clipboard') {
+      if (!text) {
+        showToast('Nothing to copy yet.', 'error');
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(label, 'success');
+      } catch (err) {
+        showToast('Copy failed. Please copy manually.', 'error');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function downloadFile(content, filename, mimeType) {
+      if (!content) {
+        showToast('No content available to download.', 'error');
+        return;
+      }
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Downloaded ${filename}`, 'success');
+    }
+
+    function openSecurityModal() {
+      document.getElementById('security-modal').classList.remove('hidden');
+    }
+    function closeSecurityModal() {
+      document.getElementById('security-modal').classList.add('hidden');
+    }
+
+    /* =========================================================================
+       4. TAB SWITCHING
+    ========================================================================= */
+    function initTabs() {
+      const tabButtons = document.querySelectorAll('.studio-tab');
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+          tabButtons.forEach(b => {
+            b.setAttribute('aria-selected', 'false');
+            b.className = 'studio-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800';
+          });
+          btn.setAttribute('aria-selected', 'true');
+          btn.className = 'studio-tab active-tab px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition bg-indigo-600 text-white shadow-sm';
+
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+          document.getElementById(`panel-${target}`).classList.remove('hidden');
+
+          if (target === 'converter') {
+            syncMainToConverter();
+          } else if (target === 'jsonpath') {
+            const jpSource = document.getElementById('jsonpath-source');
+            if (!jpSource.value.trim() && inputEl.value.trim()) {
+              jpSource.value = currentFormattedString || inputEl.value;
+            }
+            runJSONPathQuery();
+          }
+        });
+      });
+    }
+
+    /* =========================================================================
+       5. TAB 1: FORMATTER, VALIDATOR, AUTO-REPAIR, TREE & TABLE VIEWER
+    ========================================================================= */
+    function updateLineNumbers() {
+      const lines = inputEl.value.split('\n').length;
+      const nums = [];
+      for (let i = 1; i <= lines; i++) nums.push(i);
+      lineNumbersEl.textContent = nums.join('\n');
+    }
+
+    function getIndentValue() {
+      const val = document.getElementById('indent-select').value;
+      return val === 'tab' ? '\t' : Number(val);
+    }
+
+    function getJSONStats(data, rawStr) {
+      const bytes = new TextEncoder().encode(rawStr).length;
+      const sizeStr = bytes < 1024 ? `${bytes} B` : `${(bytes / 1024).toFixed(2)} KB`;
+      let keyCount = 0;
+
+      function traverse(node, depth) {
+        if (node === null || typeof node !== 'object') return depth;
+        if (Array.isArray(node)) {
+          let maxD = depth;
+          for (const item of node) {
+            maxD = Math.max(maxD, traverse(item, depth + 1));
+          }
+          return maxD;
+        }
+        const keys = Object.keys(node);
+        keyCount += keys.length;
+        let maxD = depth;
+        for (const k of keys) {
+          maxD = Math.max(maxD, traverse(node[k], depth + 1));
+        }
+        return maxD;
+      }
+
+      const maxDepth = traverse(data, 1);
+      return { sizeStr, keyCount, maxDepth };
+    }
+
+    function getDetailedSyntaxError(raw, err) {
+      const msg = err.message || 'Invalid JSON syntax';
+      const posMatch = msg.match(/position\s+(\d+)/i);
+      if (posMatch) {
+        const pos = Number(posMatch[1]);
+        const upToErr = raw.slice(0, pos);
+        const lines = upToErr.split('\n');
+        const line = lines.length;
+        const col = lines[lines.length - 1].length + 1;
+        return `${msg} (Line ${line}, Column ${col})`;
+      }
+      return msg;
+    }
+
+    function processMainJSON(minify = false) {
+      const raw = inputEl.value;
+      const banner = document.getElementById('validation-banner');
+      const dot = document.getElementById('status-dot');
+      const msgEl = document.getElementById('status-message');
+
+      if (!raw.trim()) {
+        currentParsedData = null;
+        currentFormattedString = '';
+        outputPreEl.textContent = '';
+        treeViewEl.innerHTML = '';
+        tableViewEl.innerHTML = '';
+        banner.className = 'rounded-2xl px-4 py-2.5 border text-xs flex flex-wrap items-center justify-between gap-2 bg-slate-100 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400';
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-400';
+        msgEl.textContent = 'Waiting for JSON input...';
+        document.getElementById('stat-size').textContent = 'Size: 0 B';
+        document.getElementById('stat-keys').textContent = 'Keys: 0';
+        document.getElementById('stat-depth').textContent = 'Depth: 0';
+        return false;
+      }
+
+      if (new TextEncoder().encode(raw).length > MAX_INPUT_BYTES) {
+        currentParsedData = null;
+        msgEl.textContent = 'Input exceeds the 5 MiB limit. Reduce the payload and try again.';
+        banner.className = 'rounded-2xl px-4 py-2.5 border text-xs bg-amber-50 border-amber-200 text-amber-800';
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-500';
+        return false;
+      }
+      try {
+        const parsed = JSON.parse(raw);
+        currentParsedData = parsed;
+        currentFormattedString = minify ? JSON.stringify(parsed) : JSON.stringify(parsed, null, getIndentValue());
+
+        // Render Code Output (XSS-safe via textContent)
+        outputPreEl.textContent = currentFormattedString;
+
+        // Render Tree & Table Views
+        renderTreeView(parsed);
+        renderTableView(parsed);
+
+        // Update Validation Telemetry
+        const stats = getJSONStats(parsed, currentFormattedString);
+        banner.className = 'rounded-2xl px-4 py-2.5 border text-xs flex flex-wrap items-center justify-between gap-2 bg-emerald-50/90 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/70 text-emerald-800 dark:text-emerald-200';
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
+        msgEl.textContent = 'Valid JSON (RFC 8259)';
+        document.getElementById('stat-size').textContent = `Size: ${stats.sizeStr}`;
+        document.getElementById('stat-keys').textContent = `Keys: ${stats.keyCount}`;
+        document.getElementById('stat-depth').textContent = `Depth: ${stats.maxDepth}`;
+        return true;
+      } catch (err) {
+        currentParsedData = null;
+        const detailed = getDetailedSyntaxError(raw, err);
+        banner.className = 'rounded-2xl px-4 py-2.5 border text-xs flex flex-wrap items-center justify-between gap-2 bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-200';
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-rose-500';
+        msgEl.textContent = `Syntax Error: ${detailed}`;
+        return false;
+      }
+    }
+
+    function formatJSON() {
+      if (processMainJSON(false)) {
+        inputEl.value = currentFormattedString;
+        updateLineNumbers();
+        showToast('JSON formatted cleanly.', 'success');
+      } else {
+        showToast('Invalid JSON — try Auto-Repair JSON.', 'error');
+      }
+    }
+
+    function minifyJSON() {
+      if (processMainJSON(true)) {
+        inputEl.value = currentFormattedString;
+        updateLineNumbers();
+        showToast('JSON minified.', 'success');
+      } else {
+        showToast('Cannot minify invalid JSON.', 'error');
+      }
+    }
+
+    function sortObjectKeysRecursive(val) {
+      if (Array.isArray(val)) return val.map(sortObjectKeysRecursive);
+      if (val !== null && typeof val === 'object') {
+        return Object.keys(val).sort((a, b) => a.localeCompare(b)).reduce((acc, k) => {
+          acc[k] = sortObjectKeysRecursive(val[k]);
+          return acc;
+        }, {});
+      }
+      return val;
+    }
+
+    function sortKeysJSON() {
+      if (!currentParsedData && !processMainJSON(false)) {
+        showToast('Provide valid JSON before sorting keys.', 'error');
+        return;
+      }
+      const sorted = sortObjectKeysRecursive(currentParsedData);
+      inputEl.value = JSON.stringify(sorted, null, getIndentValue());
+      updateLineNumbers();
+      processMainJSON(false);
+      showToast('Object keys sorted alphabetically (A–Z).', 'success');
+    }
+
+    function repairJSON() {
+      let str = inputEl.value.trim();
+      if (!str) {
+        showToast('Paste malformed JSON first.', 'error');
+        return;
+      }
+      try {
+        // 1. Strip single-line and multi-line JS comments outside strings
+        str = str.replace(/\/\*[\s\S]*?\*\/|(?<![:\\])\/\/.*$/gm, '');
+        // 2. Replace Python/JS constants
+        str = str.replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false').replace(/\bNone\b/g, 'null').replace(/\bundefined\b/g, 'null');
+        // 3. Convert single-quoted strings to double-quoted strings
+        str = str.replace(/'([^'\\]*(?:\\.[^'\\]*)*)'/g, (_, inner) => `"${inner.replace(/"/g, '\\"')}"`);
+        // 4. Quote unquoted object keys
+        str = str.replace(/([{,]\s*)([a-zA-Z_$][a-zA-Z0-9_$-]*)(\s*:)/g, '$1"$2"$3');
+        // 5. Remove trailing commas before } or ]
+        str = str.replace(/,\s*([}\]])/g, '$1');
+
+        const parsed = JSON.parse(str);
+        inputEl.value = JSON.stringify(parsed, null, getIndentValue());
+        updateLineNumbers();
+        processMainJSON(false);
+        showToast('Broken JSON repaired & formatted!', 'success');
+      } catch (e) {
+        showToast('Could not auto-repair: ' + e.message, 'error');
+      }
+    }
+
+    function loadSampleJSON(notify = true) {
+      inputEl.value = JSON.stringify(SAMPLE_JSON, null, 2);
+      updateLineNumbers();
+      processMainJSON(false);
+      if (notify) showToast('Sample JSON loaded.', 'info');
+    }
+
+    function clearInput() {
+      inputEl.value = '';
+      updateLineNumbers();
+      processMainJSON(false);
+    }
+
+    async function pasteFromClipboard() {
+      try {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          const text = await navigator.clipboard.readText();
+          inputEl.value = text;
+          updateLineNumbers();
+          processMainJSON(false);
+          showToast('Pasted from clipboard.', 'success');
+        } else {
+          inputEl.focus();
+          showToast('Press Ctrl+V / Cmd+V in the editor to paste.', 'info');
+        }
+      } catch (_) {
+        inputEl.focus();
+        showToast('Press Ctrl+V / Cmd+V in the editor to paste.', 'info');
+      }
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        inputEl.value = e.target.result;
+        updateLineNumbers();
+        processMainJSON(false);
+        showToast(`Loaded ${file.name}`, 'success');
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function copyOutput() {
+      copyTextSafe(currentFormattedString, 'Formatted JSON copied!');
+    }
+
+    function downloadJSON() {
+      downloadFile(currentFormattedString, 'jsonpro-formatted.json', 'application/json');
+    }
+
+    /* --- Output Views: Code, Interactive Tree, Table --- */
+    function switchOutputView(view) {
+      currentOutputView = view;
+      ['code', 'tree', 'table'].forEach(v => {
+        const btn = document.getElementById(`view-btn-${v}`);
+        const panel = document.getElementById(`output-${v}-view`);
+        if (v === view) {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm transition';
+          panel.classList.remove('hidden');
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 transition';
+          panel.classList.add('hidden');
+        }
+      });
+      document.getElementById('tree-controls').classList.toggle('hidden', view !== 'tree');
+    }
+
+    function renderTreeView(data) {
+      treeViewEl.innerHTML = '';
+      treeViewEl.appendChild(buildTreeNode(data, '$', '$'));
+    }
+
+    function buildTreeNode(value, keyLabel, path) {
+      const container = document.createElement('div');
+      container.className = 'pl-3 border-l border-slate-200 dark:border-slate-800 my-0.5';
+
+      const isObj = value !== null && typeof value === 'object';
+      const isArr = Array.isArray(value);
+
+      if (!isObj) {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-2 py-0.5 group rounded hover:bg-slate-50 dark:hover:bg-slate-800/60 px-1.5';
+
+        const keySpan = document.createElement('span');
+        keySpan.className = 'font-semibold text-slate-700 dark:text-slate-300';
+        keySpan.textContent = `${keyLabel}:`;
+
+        const valSpan = document.createElement('span');
+        if (typeof value === 'string') {
+          valSpan.className = 'text-emerald-600 dark:text-emerald-400 break-all';
+          valSpan.textContent = `"${value}"`;
+        } else if (typeof value === 'number') {
+          valSpan.className = 'text-indigo-600 dark:text-indigo-400';
+          valSpan.textContent = String(value);
+        } else if (typeof value === 'boolean') {
+          valSpan.className = 'text-amber-600 dark:text-amber-400 font-semibold';
+          valSpan.textContent = String(value);
+        } else {
+          valSpan.className = 'text-slate-400 italic';
+          valSpan.textContent = 'null';
+        }
+
+        const copyPathBtn = document.createElement('button');
+        copyPathBtn.type = 'button';
+        copyPathBtn.className = 'opacity-0 group-hover:opacity-100 ml-auto text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 transition';
+        copyPathBtn.textContent = 'Copy Path';
+        copyPathBtn.onclick = () => copyTextSafe(path, `Copied path: ${path}`);
+
+        row.append(keySpan, valSpan, copyPathBtn);
+        container.appendChild(row);
+        return container;
+      }
+
+      const details = document.createElement('details');
+      details.open = true;
+      details.className = 'tree-branch';
+
+      const summary = document.createElement('summary');
+      summary.className = 'cursor-pointer select-none flex items-center gap-2 py-0.5 px-1.5 rounded hover:bg-slate-50 dark:hover:bg-slate-800/60 group';
+
+      const keySpan = document.createElement('span');
+      keySpan.className = 'font-bold text-slate-800 dark:text-slate-200';
+      keySpan.textContent = keyLabel;
+
+      const entries = isArr ? value.map((v, i) => [i, v]) : Object.entries(value);
+      const badge = document.createElement('span');
+      badge.className = 'text-[10px] px-1.5 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 font-semibold';
+      badge.textContent = isArr ? `Array(${entries.length})` : `Object{${entries.length}}`;
+
+      const copyPathBtn = document.createElement('button');
+      copyPathBtn.type = 'button';
+      copyPathBtn.className = 'opacity-0 group-hover:opacity-100 ml-auto text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 transition';
+      copyPathBtn.textContent = 'Copy Path';
+      copyPathBtn.onclick = (e) => {
+        e.preventDefault();
+        copyTextSafe(path, `Copied path: ${path}`);
+      };
+
+      summary.append(keySpan, badge, copyPathBtn);
+      details.appendChild(summary);
+
+      const childrenWrap = document.createElement('div');
+      entries.forEach(([k, v]) => {
+        const childPath = isArr ? `${path}[${k}]` : `${path}.${k}`;
+        childrenWrap.appendChild(buildTreeNode(v, String(k), childPath));
+      });
+      details.appendChild(childrenWrap);
+      container.appendChild(details);
+      return container;
+    }
+
+    function toggleAllTreeNodes(openState) {
+      treeViewEl.querySelectorAll('details.tree-branch').forEach(d => {
+        d.open = openState;
+      });
+    }
+
+    function renderTableView(data) {
+      tableViewEl.innerHTML = '';
+      let rows = [];
+      if (Array.isArray(data)) {
+        rows = data;
+      } else if (data && typeof data === 'object') {
+        const firstArrayKey = Object.keys(data).find(k => Array.isArray(data[k]) && data[k].length > 0 && typeof data[k][0] === 'object');
+        rows = firstArrayKey ? data[firstArrayKey] : [data];
+      }
+
+      if (!rows.length || typeof rows[0] !== 'object' || rows[0] === null) {
+        const p = document.createElement('p');
+        p.className = 'text-slate-500 p-4';
+        p.textContent = 'Table View works best with JSON objects or arrays of objects.';
+        tableViewEl.appendChild(p);
+        return;
+      }
+
+      const headers = Array.from(new Set(rows.flatMap(r => (r && typeof r === 'object') ? Object.keys(r) : [])));
+      const table = document.createElement('table');
+      table.className = 'w-full border-collapse text-left font-mono text-xs';
+
+      const thead = document.createElement('thead');
+      const trHead = document.createElement('tr');
+      trHead.className = 'bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700';
+      headers.forEach(h => {
+        const th = document.createElement('th');
+        th.className = 'px-3 py-2 font-bold text-slate-700 dark:text-slate-200';
+        th.textContent = h;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+
+      const tbody = document.createElement('tbody');
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-100 dark:border-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-800/40';
+        headers.forEach(h => {
+          const td = document.createElement('td');
+          td.className = 'px-3 py-2 text-slate-700 dark:text-slate-300 max-w-xs truncate';
+          const val = row ? row[h] : undefined;
+          td.textContent = val === undefined ? '—' : (typeof val === 'object' ? JSON.stringify(val) : String(val));
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+
+      table.append(thead, tbody);
+      tableViewEl.appendChild(table);
+    }
+
+    /* =========================================================================
+       6. TAB 2: STRUCTURAL JSON DIFF
+    ========================================================================= */
+    function loadSampleDiff() {
+      document.getElementById('diff-left').value = JSON.stringify({
+        service: "billing-api",
+        version: "1.4.0",
+        rateLimit: 100,
+        legacyMode: true,
+        regions: ["us-east-1", "eu-west-1"]
+      }, null, 2);
+
+      document.getElementById('diff-right').value = JSON.stringify({
+        service: "billing-api",
+        version: "2.0.0",
+        rateLimit: 500,
+        zeroTrustAuth: true,
+        regions: ["us-east-1", "eu-west-1", "ap-northeast-1"]
+      }, null, 2);
+
+      runJSONDiff();
+    }
+
+    function computeDiff(left, right, path = '$', diffs = []) {
+      if (left === right) return diffs;
+      if (typeof left !== typeof right || left === null || right === null || Array.isArray(left) !== Array.isArray(right)) {
+        diffs.push({ type: 'modified', path, oldVal: left, newVal: right });
+        return diffs;
+      }
+      if (typeof left !== 'object') {
+        if (left !== right) diffs.push({ type: 'modified', path, oldVal: left, newVal: right });
+        return diffs;
+      }
+      if (Array.isArray(left)) {
+        const maxLen = Math.max(left.length, right.length);
+        for (let i = 0; i < maxLen; i++) {
+          if (i >= left.length) diffs.push({ type: 'added', path: `${path}[${i}]`, newVal: right[i] });
+          else if (i >= right.length) diffs.push({ type: 'removed', path: `${path}[${i}]`, oldVal: left[i] });
+          else computeDiff(left[i], right[i], `${path}[${i}]`, diffs);
+        }
+        return diffs;
+      }
+      const allKeys = new Set([...Object.keys(left), ...Object.keys(right)]);
+      allKeys.forEach(k => {
+        const nextPath = `${path}.${k}`;
+        if (!Object.prototype.hasOwnProperty.call(left, k)) diffs.push({ type: 'added', path: nextPath, newVal: right[k] });
+        else if (!Object.prototype.hasOwnProperty.call(right, k)) diffs.push({ type: 'removed', path: nextPath, oldVal: left[k] });
+        else computeDiff(left[k], right[k], nextPath, diffs);
+      });
+      return diffs;
+    }
+
+    function runJSONDiff() {
+      const leftStr = document.getElementById('diff-left').value.trim();
+      const rightStr = document.getElementById('diff-right').value.trim();
+      const resultsEl = document.getElementById('diff-results');
+
+      if (!leftStr || !rightStr) {
+        showToast('Please enter both Original and Modified JSON.', 'error');
+        return;
+      }
+
+      try {
+        const leftObj = JSON.parse(leftStr);
+        const rightObj = JSON.parse(rightStr);
+        const diffs = computeDiff(leftObj, rightObj);
+
+        const added = diffs.filter(d => d.type === 'added').length;
+        const removed = diffs.filter(d => d.type === 'removed').length;
+        const modified = diffs.filter(d => d.type === 'modified').length;
+
+        document.getElementById('diff-summary-badges').innerHTML = `
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">+${added} Added</span>
+          <span class="px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">-${removed} Removed</span>
+          <span class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">~${modified} Modified</span>
+        `;
+
+        resultsEl.innerHTML = '';
+        if (!diffs.length) {
+          const same = document.createElement('p');
+          same.className = 'text-emerald-600 dark:text-emerald-400 font-semibold';
+          same.textContent = '✓ Both JSON payloads are structurally identical.';
+          resultsEl.appendChild(same);
+          return;
+        }
+
+        diffs.forEach(d => {
+          const row = document.createElement('div');
+          if (d.type === 'added') {
+            row.className = 'p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200';
+            row.textContent = `+ ADDED   ${d.path}  =>  ${JSON.stringify(d.newVal)}`;
+          } else if (d.type === 'removed') {
+            row.className = 'p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-900 dark:text-rose-200';
+            row.textContent = `- REMOVED ${d.path}  =>  ${JSON.stringify(d.oldVal)}`;
+          } else {
+            row.className = 'p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200';
+            row.textContent = `~ CHANGED ${d.path}  :  ${JSON.stringify(d.oldVal)}  →  ${JSON.stringify(d.newVal)}`;
+          }
+          resultsEl.appendChild(row);
+        });
+      } catch (e) {
+        showToast('Invalid JSON in Diff inputs: ' + e.message, 'error');
+      }
+    }
+
+    /* =========================================================================
+       7. TAB 3: MULTI-FORMAT CONVERTER (TypeScript, CSV, YAML, SQL)
+    ========================================================================= */
+    function syncMainToConverter() {
+      const convIn = document.getElementById('converter-input');
+      if (inputEl.value.trim()) {
+        convIn.value = currentFormattedString || inputEl.value;
+      }
+      convertJSONFormat(currentConvertTarget);
+    }
+
+    function convertJSONFormat(target) {
+      currentConvertTarget = target;
+      document.querySelectorAll('.conv-btn').forEach(btn => {
+        const active = btn.getAttribute('data-format') === target;
+        btn.className = active
+          ? 'conv-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition'
+          : 'conv-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition';
+      });
+
+      const labels = {
+        typescript: 'TypeScript Interfaces (.ts)',
+        csv: 'CSV Spreadsheet (.csv)',
+        yaml: 'YAML Output (.yaml)',
+        sql: 'SQL Schema & Insert (.sql)'
+      };
+      document.getElementById('converter-output-label').textContent = labels[target];
+
+      const raw = document.getElementById('converter-input').value.trim();
+      const outEl = document.getElementById('converter-output');
+      if (!raw) {
+        outEl.textContent = '// Paste valid JSON on the left to convert...';
+        return;
+      }
+
+      try {
+        const data = JSON.parse(raw);
+        if (target === 'typescript') outEl.textContent = jsonToTypeScript(data);
+        else if (target === 'csv') outEl.textContent = jsonToCSV(data);
+        else if (target === 'yaml') outEl.textContent = jsonToYAML(data);
+        else if (target === 'sql') outEl.textContent = jsonToSQL(data);
+      } catch (e) {
+        outEl.textContent = `// JSON Parse Error: ${e.message}`;
+      }
+    }
+
+    function jsonToTypeScript(data) {
+      const interfaces = [];
+      const seen = new Set();
+
+      function capitalize(s) {
+        const clean = s.replace(/[^a-zA-Z0-9]/g, '');
+        return clean ? clean.charAt(0).toUpperCase() + clean.slice(1) : 'Item';
+      }
+
+      function inferType(val, name) {
+        if (val === null) return 'null';
+        if (Array.isArray(val)) {
+          if (!val.length) return 'unknown[]';
+          const itemType = inferType(val[0], name + 'Item');
+          return `${itemType}[]`;
+        }
+        if (typeof val === 'object') {
+          const ifaceName = capitalize(name);
+          if (!seen.has(ifaceName)) {
+            seen.add(ifaceName);
+            const fields = Object.entries(val).map(([k, v]) => {
+              const safeKey = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k) ? k : `"${k}"`;
+              return `  ${safeKey}: ${inferType(v, k)};`;
+            });
+            interfaces.push(`export interface ${ifaceName} {\n${fields.join('\n')}\n}`);
+          }
+          return ifaceName;
+        }
+        return typeof val;
+      }
+
+      inferType(data, 'RootPayload');
+      return interfaces.reverse().join('\n\n');
+    }
+
+    function jsonToCSV(data) {
+      let rows = Array.isArray(data) ? data : null;
+      if (!rows && data && typeof data === 'object') {
+        const arrKey = Object.keys(data).find(k => Array.isArray(data[k]) && data[k].length && typeof data[k][0] === 'object');
+        rows = arrKey ? data[arrKey] : [data];
+      }
+      if (!rows || !rows.length || typeof rows[0] !== 'object') {
+        return 'Error: CSV conversion requires a JSON object or an array of objects.';
+      }
+      const headers = Array.from(new Set(rows.flatMap(r => Object.keys(r || {}))));
+      const escapeCell = (v) => {
+        if (v === null || v === undefined) return '';
+        const str = typeof v === 'object' ? JSON.stringify(v) : String(v);
+        return /[",\n]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+      };
+      const lines = [headers.map(escapeCell).join(',')];
+      rows.forEach(r => {
+        lines.push(headers.map(h => escapeCell(r ? r[h] : '')).join(','));
+      });
+      return lines.join('\n');
+    }
+
+    function jsonToYAML(val, indent = 0) {
+      const pad = '  '.repeat(indent);
+      if (val === null) return 'null';
+      if (typeof val === 'number' || typeof val === 'boolean') return String(val);
+      if (typeof val === 'string') {
+        return /[:#\-\n"']/.test(val) || val === '' ? JSON.stringify(val) : val;
+      }
+      if (Array.isArray(val)) {
+        if (!val.length) return '[]';
+        return val.map(item => {
+          if (item !== null && typeof item === 'object') {
+            const nested = jsonToYAML(item, indent + 1).replace(/^\s+/, '');
+            return `${pad}- ${nested}`;
+          }
+          return `${pad}- ${jsonToYAML(item, indent + 1)}`;
+        }).join('\n');
+      }
+      const entries = Object.entries(val);
+      if (!entries.length) return '{}';
+      return entries.map(([k, v]) => {
+        if (v !== null && typeof v === 'object' && (Array.isArray(v) ? v.length > 0 : Object.keys(v).length > 0)) {
+          return `${pad}${k}:\n${jsonToYAML(v, indent + 1)}`;
+        }
+        return `${pad}${k}: ${jsonToYAML(v, indent + 1)}`;
+      }).join('\n');
+    }
+
+    function jsonToSQL(data) {
+      let rows = Array.isArray(data) ? data : null;
+      let tableName = 'json_records';
+      if (!rows && data && typeof data === 'object') {
+        const arrKey = Object.keys(data).find(k => Array.isArray(data[k]) && data[k].length && typeof data[k][0] === 'object');
+        if (arrKey) {
+          rows = data[arrKey];
+          tableName = arrKey.replace(/[^a-zA-Z0-9_]/g, '_');
+        } else {
+          rows = [data];
+        }
+      }
+      if (!rows || !rows.length || typeof rows[0] !== 'object') {
+        return '-- SQL export requires a JSON object or array of objects.';
+      }
+      const cols = Array.from(new Set(rows.flatMap(r => Object.keys(r || {}))));
+      const colDefs = cols.map(c => {
+        const sampleVal = rows.find(r => r && r[c] !== null && r[c] !== undefined)?.[c];
+        let sqlType = 'TEXT';
+        if (typeof sampleVal === 'number') sqlType = Number.isInteger(sampleVal) ? 'INTEGER' : 'DECIMAL(12,4)';
+        else if (typeof sampleVal === 'boolean') sqlType = 'BOOLEAN';
+        return `  ${c.replace(/[^a-zA-Z0-9_]/g, '_')} ${sqlType}`;
+      });
+
+      const createStmt = `CREATE TABLE ${tableName} (\n${colDefs.join(',\n')}\n);\n\n`;
+      const safeCols = cols.map(c => c.replace(/[^a-zA-Z0-9_]/g, '_')).join(', ');
+      const inserts = rows.map(r => {
+        const vals = cols.map(c => {
+          const v = r ? r[c] : null;
+          if (v === null || v === undefined) return 'NULL';
+          if (typeof v === 'number' || typeof v === 'boolean') return String(v);
+          const s = typeof v === 'object' ? JSON.stringify(v) : String(v);
+          return `'${s.replace(/'/g, "''")}'`;
+        });
+        return `INSERT INTO ${tableName} (${safeCols}) VALUES (${vals.join(', ')});`;
+      }).join('\n');
+
+      return createStmt + inserts;
+    }
+
+    function copyConvertedOutput() {
+      copyTextSafe(document.getElementById('converter-output').textContent, 'Converted output copied!');
+    }
+
+    function downloadConvertedOutput() {
+      const extMap = { typescript: 'ts', csv: 'csv', yaml: 'yaml', sql: 'sql' };
+      const ext = extMap[currentConvertTarget] || 'txt';
+      downloadFile(document.getElementById('converter-output').textContent, `jsonpro-export.${ext}`, 'text/plain');
+    }
+
+    /* =========================================================================
+       8. TAB 4: JSONPATH QUERY ENGINE
+    ========================================================================= */
+    function setJSONPath(expr) {
+      document.getElementById('jsonpath-query').value = expr;
+      runJSONPathQuery();
+    }
+
+    function evaluateJSONPath(root, expr) {
+      const clean = expr.trim();
+      if (!clean || clean === '$') return [root];
+
+      // Support recursive descent ($..key)
+      if (clean.startsWith('$..')) {
+        const targetKey = clean.slice(3).trim();
+        const matches = [];
+        function walk(node) {
+          if (!node || typeof node !== 'object') return;
+          if (!Array.isArray(node) && Object.prototype.hasOwnProperty.call(node, targetKey)) {
+            matches.push(node[targetKey]);
+          }
+          const children = Array.isArray(node) ? node : Object.values(node);
+          children.forEach(walk);
+        }
+        walk(root);
+        return matches;
+      }
+
+      // Normalize tokens: $.users[*].email -> ['users', '*', 'email']
+      const normalized = clean.replace(/^\$\.?/, '').replace(/\[(\*|\d+|'[^']+'|"[^"]+")\]/g, '.$1');
+      const tokens = normalized.split('.').filter(Boolean).map(t => t.replace(/^['"]|['"]$/g, ''));
+
+      let current = [root];
+      for (const token of tokens) {
+        const next = [];
+        for (const item of current) {
+          if (item === null || typeof item !== 'object') continue;
+          if (token === '*') {
+            if (Array.isArray(item)) next.push(...item);
+            else next.push(...Object.values(item));
+          } else if (Array.isArray(item) && /^\d+$/.test(token)) {
+            const idx = Number(token);
+            if (idx < item.length) next.push(item[idx]);
+          } else if (!Array.isArray(item) && Object.prototype.hasOwnProperty.call(item, token)) {
+            next.push(item[token]);
+          }
+        }
+        current = next;
+      }
+      return current;
+    }
+
+    function runJSONPathQuery() {
+      const srcStr = document.getElementById('jsonpath-source').value.trim();
+      const expr = document.getElementById('jsonpath-query').value;
+      const outEl = document.getElementById('jsonpath-output');
+      const countEl = document.getElementById('jsonpath-match-count');
+
+      if (!srcStr) {
+        outEl.textContent = '// Provide JSON data on the left.';
+        countEl.textContent = '0 matches';
+        return;
+      }
+      try {
+        const data = JSON.parse(srcStr);
+        const results = evaluateJSONPath(data, expr);
+        countEl.textContent = `${results.length} match${results.length === 1 ? '' : 'es'}`;
+        outEl.textContent = JSON.stringify(results, null, 2);
+      } catch (e) {
+        outEl.textContent = `// JSON Error: ${e.message}`;
+        countEl.textContent = 'Invalid JSON';
+      }
+    }
+
+    /* =========================================================================
+       9. TAB 5: OFFLINE JWT DECODER
+    ========================================================================= */
+    function loadSampleJWT() {
+      // Sample unsigned demo JWT (header.payload.signature)
+      const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" })).replace(/=/g, '');
+      const payload = btoa(JSON.stringify({
+        sub: "usr_984210",
+        name: "Elena Rostova",
+        org: "CloudScale EU",
+        role: "admin",
+        iat: 1763980000,
+        exp: 1893456000
+      })).replace(/=/g, '');
+      document.getElementById('jwt-input').value = `${header}.${payload}.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`;
+      decodeJWT();
+    }
+
+    function decodeBase64Url(str) {
+      let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+      while (base64.length % 4 !== 0) base64 += '=';
+      const binary = atob(base64);
+      const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+      return new TextDecoder().decode(bytes);
+    }
+
+    function decodeJWT() {
+      const token = document.getElementById('jwt-input').value.trim();
+      const headerOut = document.getElementById('jwt-header-out');
+      const payloadOut = document.getElementById('jwt-payload-out');
+      const statusEl = document.getElementById('jwt-status');
+
+      if (!token) {
+        headerOut.textContent = '{}';
+        payloadOut.textContent = '{}';
+        statusEl.textContent = '';
+        return;
+      }
+
+      const parts = token.split('.');
+      if (parts.length < 2) {
+        statusEl.className = 'text-xs font-semibold text-rose-600 dark:text-rose-400';
+        statusEl.textContent = 'Invalid JWT format: expected at least Header.Payload segments.';
+        return;
+      }
+
+      try {
+        const headerObj = JSON.parse(decodeBase64Url(parts[0]));
+        const payloadObj = JSON.parse(decodeBase64Url(parts[1]));
+
+        headerOut.textContent = JSON.stringify(headerObj, null, 2);
+        payloadOut.textContent = JSON.stringify(payloadObj, null, 2);
+
+        if (payloadObj.exp) {
+          const expDate = new Date(payloadObj.exp * 1000);
+          const isExpired = Date.now() > expDate.getTime();
+          statusEl.className = isExpired
+            ? 'text-xs font-semibold text-rose-600 dark:text-rose-400'
+            : 'text-xs font-semibold text-emerald-600 dark:text-emerald-400';
+          statusEl.textContent = isExpired
+            ? `Decoded • Expired (not signature-verified) • Expiration date: ${expDate.toUTCString()}`
+            : `Decoded • Expiration claim is in the future (not signature-verified) • Expires on ${expDate.toUTCString()}`;
+        } else {
+          statusEl.className = 'text-xs font-semibold text-indigo-600 dark:text-indigo-400';
+          statusEl.textContent = 'Decoded locally. No exp claim is present; signature is not verified.';
+        }
+      } catch (e) {
+        statusEl.className = 'text-xs font-semibold text-rose-600 dark:text-rose-400';
+        statusEl.textContent = 'Failed to decode JWT Base64URL payload.';
+      }
+    }
+  </script>
+</body>
+</html>
