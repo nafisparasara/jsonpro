@@ -585,7 +585,8 @@
     let currentParsedData = null;
     let currentFormattedString = '';
     let currentOutputView = 'code';
-    let currentConvertTarget = 'typescript';\n    const MAX_INPUT_BYTES = 5 * 1024 * 1024; // 5 MiB per input field
+    let currentConvertTarget = 'typescript';
+    const MAX_INPUT_BYTES = 5 * 1024 * 1024; // 5 MiB per input field
 
     const inputEl = document.getElementById('json-input');
     const lineNumbersEl = document.getElementById('line-numbers');
@@ -594,7 +595,9 @@
     const tableViewEl = document.getElementById('output-table-view');
 
     document.addEventListener('DOMContentLoaded', () => {
-      const yearNode = document.getElementById('copyright-year');\n      if (yearNode) yearNode.textContent = String(new Date().getFullYear());\n      initTheme();
+      const yearNode = document.getElementById('copyright-year');
+      if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+      initTheme();
       initTabs();
       loadSampleJSON(false);
 
@@ -612,7 +615,8 @@
        2. THEME MANAGEMENT (DEFAULT: LIGHT THEME)
     ========================================================================= */
     function initTheme() {
-      let saved = 'light';\n      try { saved = localStorage.getItem('jsonpro_theme') || 'light'; } catch (_) {}
+      let saved = 'light';
+      try { saved = localStorage.getItem('jsonpro_theme') || 'light'; } catch (_) {}
       if (saved === 'dark') {
         document.documentElement.classList.add('dark');
         document.documentElement.classList.remove('light');
